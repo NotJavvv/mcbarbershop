@@ -470,8 +470,8 @@ function initStats() {
 
     if (target === 25000) {
       // Animación lenta para seguidores
-      let current = 20000; // Empezar desde 2000 para dar más impacto al crecimiento
-      const frames = 3000000; // Muchísimos frames para una animación extremadamente lenta
+      let current = 20001; 
+      const frames = 3000000; 
       const increment = (target - 0) / frames;
 
       function formatValue(val) {
