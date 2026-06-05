@@ -476,9 +476,10 @@ function initStats() {
 
       function formatValue(val) {
         const n = Math.floor(val);
-        if (format === 'percent') return n + '%';
-        if (format === 'plus') return '+' + n;
-        return n;
+        const formatted = n.toLocaleString('es-ES');
+        if (format === 'percent') return formatted + '%';
+        if (format === 'plus') return '+' + formatted;
+        return formatted;
       }
 
       // Establecer el valor inicial
@@ -487,9 +488,10 @@ function initStats() {
       function updateNumber() {
         current += increment;
         if (current >= target) {
-          if (format === 'percent') element.textContent = target + '%';
-          else if (format === 'plus') element.textContent = '+' + target;
-          else element.textContent = target;
+          const finalValue = target.toLocaleString('es-ES');
+          if (format === 'percent') element.textContent = finalValue + '%';
+          else if (format === 'plus') element.textContent = '+' + finalValue;
+          else element.textContent = finalValue;
         } else {
           element.textContent = formatValue(current);
           requestAnimationFrame(updateNumber);
@@ -505,17 +507,19 @@ function initStats() {
 
       function formatValue(val) {
         const n = Math.floor(val);
-        if (format === 'percent') return n + '%';
-        if (format === 'plus') return '+' + n;
-        return n;
+        const formatted = n.toLocaleString('es-ES');
+        if (format === 'percent') return formatted + '%';
+        if (format === 'plus') return '+' + formatted;
+        return formatted;
       }
 
       function updateNumber() {
         current += increment;
         if (current >= target) {
-          if (format === 'percent') element.textContent = target + '%';
-          else if (format === 'plus') element.textContent = '+' + target;
-          else element.textContent = target;
+          const finalValue = target.toLocaleString('es-ES');
+          if (format === 'percent') element.textContent = finalValue + '%';
+          else if (format === 'plus') element.textContent = '+' + finalValue;
+          else element.textContent = finalValue;
         } else {
           element.textContent = formatValue(current);
           requestAnimationFrame(updateNumber);
