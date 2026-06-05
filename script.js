@@ -72,12 +72,8 @@ const productosData = {
     { nombre: "Catrin Pomada", precio: "Q180", imagen: "productos/catrin1.jpeg", destacado: false },
     { nombre: "Catrin Gel de Crecimiento", precio: "Q195", imagen: "productos/catrin2.jpeg", destacado: true }  
   ],
-  agiva: [
-    { nombre: "Agiva Orange", precio: "Q60", imagen: "productos/agiva3.jpeg", destacado: false },
-    { nombre: "Agiva Yellow", precio: "Q60", imagen: "productos/agiva1.jpeg", destacado: false },
-    { nombre: "Agiva Navy Blue", precio: "Q60", imagen: "productos/agiva2.jpeg", destacado: false },
-    { nombre: "Agiva Spider Effect", precio: "Q60", imagen: "productos/agiva5.jpeg", destacado: true },
-    { nombre: "Agiva Red", precio: "Q60", imagen: "productos/agiva4.jpeg", destacado: false }
+  parabarba: [
+    { nombre: "Minoxidil 5%", precio: "Q150", imagen: "productos/Minoxidil.jpg", destacado: true }
   ],
   redone: [
     { nombre: "Red One Blue", precio: "Q140", imagen: "productos/redeone1.jpeg", destacado: false },
@@ -97,24 +93,29 @@ window.appState = {
 
 function saveAppState() {
   try {
-    localStorage.setItem('mc_app_state_v9', JSON.stringify(window.appState));
+    localStorage.setItem('mc_app_state_v10', JSON.stringify(window.appState));
   } catch (e) {
     console.warn('No se pudo guardar appState:', e);
   }
 }
 
 function loadAppState() {
-  const raw = localStorage.getItem('mc_app_state_v9');
+  const raw = localStorage.getItem('mc_app_state_v10');
   if (raw) {
     try {
       window.appState = JSON.parse(raw);
-      return;
+      const validProducts = Array.isArray(window.appState.products);
+      const hasParaBarba = validProducts && window.appState.products.some(p => p.marca === 'parabarba');
+      if (validProducts && hasParaBarba) {
+        return;
+      }
+      console.warn('appState detectado pero incompleto o desactualizado, se reconstruirá desde defaults');
     } catch (e) {
       console.warn('Error parseando app state, se re-creará desde defaults');
     }
   }
 
-  // Si no existe en localStorage, construir desde los datos estáticos
+  // Si no existe en localStorage o el estado es viejo, construir desde los datos estáticos
   const products = [];
   Object.keys(productosData).forEach(marca => {
     productosData[marca].forEach(p => {
@@ -219,20 +220,20 @@ function initHeroButtons() {
     };
   }
 
-  // Botón para ir a la galería
+  // Botón para ir a productos
   if (galleryBtn) {
     galleryBtn.onclick = () => {
-      const gallerySection = document.getElementById('galeria');
-      if (gallerySection) {
+      const productosSection = document.getElementById('productos');
+      if (productosSection) {
         const headerHeight = 80;
-        const targetTop = gallerySection.offsetTop - headerHeight;
+        const targetTop = productosSection.offsetTop - headerHeight;
         
         window.scrollTo({
           top: targetTop,
           behavior: 'smooth'
         });
         
-        console.log('✅ Navegando a galería');
+        console.log('✅ Navegando a productos');
       }
     };
   }
@@ -467,11 +468,11 @@ function initStats() {
   function animateNumber(element, target) {
     const format = element.dataset.format || '';
 
-    if (target === 18200) {
-      // Animación rápida original para seguidores
-      let current = 17900;
-      const frames = 1200;
-      const increment = (target - 17900) / frames;
+    if (target === 25000) {
+      // Animación lenta para seguidores
+      let current = 20000; // Empezar desde 2000 para dar más impacto al crecimiento
+      const frames = 3000000; // Muchísimos frames para una animación extremadamente lenta
+      const increment = (target - 0) / frames;
 
       function formatValue(val) {
         const n = Math.floor(val);
