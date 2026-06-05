@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <link rel="icon" type="image/png" href="img/logodebar.png">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MC BarberShop</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.0.0/fonts/remixicon.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=1.2" />
+</head>
+
+<body>
+  <!-- Header Moderno -->
+  <header class="header" id="header">
+    <div class="nav-container">
+      <a href="#home" class="logo">
+        <span class="logo-text">MC</span>
+        <span class="logo-accent">BarberShop</span>
+      </a>
+      
+      <nav>
+        <ul class="nav-links" id="nav-menu">
+          <li><a href="#home" data-text="Inicio">Inicio</a></li>
+          <li><a href="#conocenos" data-text="Conócenos">Conócenos</a></li>
+          <li><a href="#galeria" data-text="Galería">Galería</a></li>
+          <li><a href="#cursos" data-text="Cursos">Cursos</a></li>
+          <li><a href="#redes" data-text="Redes">Redes</a></li>
+          <li><a href="#productos" data-text="Productos">Productos</a></li>
+        </ul>
+      </nav>
+      
+      <div class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+  <!-- Hero Section Mejorada -->
+  <section id="home" class="hero">
+    <div class="hero-bg">
+      <div class="hero-gradient"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-main">
+        <div class="hero-center">
+          <h1 class="hero-title">
+            <span class="title-line">MC</span>
+            <span class="title-line accent">BarberShop</span>
+          </h1>
+          <p class="hero-subtitle">Transformamos tu estilo con pasión y profesionalismo</p>
+          
+          <div class="hero-buttons">
+            <button class="btn-primary pulse-btn" id="contactBtn">
+              <span class="btn-text">Contáctanos</span>
+              <i class="ri-whatsapp-line"></i>
+              <div class="btn-bg"></div>
+            </button>
+            <button class="btn-secondary" id="galleryBtn">
+              <span class="btn-text">Ver Galería</span>
+              <i class="ri-gallery-line"></i>
+            </button>
+          </div>
+        </div>
+        
+        <img src="img/elbarbero.jpeg" alt="El Barbero - Fundador" class="hero-image floating" />
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section Simplificada -->
+  <section id="conocenos" class="section about-section">
+    <h2 class="section-title">CONÓCENOS</h2>
+    
+    <div class="about-content">
+      <p class="about-text fade-in">
+        Somos una barbería comprometida con la excelencia y el estilo único para cada cliente. 
+        Con años de experiencia y pasión por nuestro arte, transformamos no solo tu imagen, 
+        sino también tu confianza.
+      </p>
+      
+      <div class="stats-container">
+        <div class="stat-item">
+          <div class="stat-icon pulse">
+            <i class="ri-scissors-line"></i>
+          </div>
+          <div class="stat-number" data-target="7" data-format="plus">0</div>
+          <h4>Años de Experiencia</h4>
+          <p>Perfeccionando estilos únicos y creando tendencias</p>
+        </div>
+        
+        <div class="stat-item">
+          <div class="stat-icon pulse">
+            <i class="ri-award-line"></i>
+          </div>
+          <div class="stat-number" data-target="100" data-format="percent">0</div>
+          <h4>Calidad Premium</h4>
+          <p>Productos nacionales e internacionales</p>
+        </div>
+        
+        <div class="stat-item">
+          <div class="stat-icon pulse">
+            <i class="ri-team-line"></i>
+          </div>
+          <div class="stat-number" data-target="18200" data-format="plus">17900</div>
+          <h4>Seguidores Totales</h4>
+          <p>Suma de Instagram, Facebook, TikTok y YouTube</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Slider Mejorado -->
+  <section id="galeria" class="gallery-section">
+    <div class="gallery-header">
+      <h2 class="section-title glitch" data-text="GALERÍA">GALERÍA</h2>
+      <p class="section-subtitle">Nuestros mejores trabajos</p>
+    </div>
+    
+    <div class="slider">
+      <div class="slider-container" id="slider-container">
+        <img src="img/curso4.jpeg" class="slide" alt="Curso" />
+        <img src="img/curso10.jpg" class="slide" alt="Curso" />
+        <img src="img/curso3.jpeg" class="slide" alt="Curso" />
+        <img src="img/curso6.jpeg" class="slide" alt="Curso" />
+        <img src="img/curso7.jpeg" class="slide" alt="Curso" />
+        <img src="img/curso9.jpeg" class="slide" alt="Curso" />
+        <img src="img/curso2.jpeg" class="slide" alt="Curso" />
+        <img src="img/curso11.jpeg" class="slide" alt="Curso" />
+        <img src="img/curso12.jpeg" class="slide" alt="Curso" />
+        <img src="img/fondo1.jpg" class="slide" alt="Curso" />
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- Courses Section Mejorada -->
+  <section id="cursos" class="section courses-section">
+    <h2 class="section-title">NUESTROS CURSOS</h2>
+    <p class="section-subtitle">Aprende de los mejores profesionales</p>
+
+    <div class="curso-botones">
+      <button class="course-tab active neon-btn" id="btn-basico" data-course="basico">
+        <span class="tab-icon"><i class="ri-scissors-line"></i></span>
+        <span class="tab-text">Curso Básico</span>
+      </button>
+      <button class="course-tab neon-btn" id="btn-avanzado" data-course="avanzado">
+        <span class="tab-icon"><i class="ri-magic-line"></i></span>
+        <span class="tab-text">Curso Avanzado</span>
+      </button>
+      <button class="course-tab neon-btn" id="btn-profesional" data-course="profesional">
+        <span class="tab-icon"><i class="ri-award-line"></i></span>
+        <span class="tab-text">Profesional</span>
+      </button>
+      <button class="course-tab neon-btn" id="btn-color" data-course="colorimetria">
+        <span class="tab-icon"><i class="ri-palette-line"></i></span>
+        <span class="tab-text">Colorimetría</span>
+      </button>
+    </div>
+
+    <div id="info-curso" class="curso-info slide-up">
+      <div class="curso-header">
+        <h3 class="curso-titulo">Curso Básico</h3>
+        <div class="curso-badge">
+          <i class="ri-star-fill"></i>
+          Más Popular
+        </div>
+      </div>
+      
+      <div class="curso-content">
+        <p class="curso-descripcion">Aprende desde cero: manejo de máquinas, degradado clásico y cortes base.</p>
+        
+        <div class="curso-features" id="curso-features">
+          <div class="feature-item">
+            <i class="ri-check-double-line"></i>
+            <span>12 semanas de duración</span>
+          </div>
+          <div class="feature-item">
+            <i class="ri-check-double-line"></i>
+            <span>Prácticas reales</span>
+          </div>
+          <div class="feature-item">
+            <i class="ri-check-double-line"></i>
+            <span>Certificado incluido</span>
+          </div>
+          <div class="feature-item" style="justify-content: center;">
+            <i class="ri-check-double-line"></i>
+            <span>Modalidad en línea o presencial</span>
+          </div>
+        </div>
+        
+        <div class="curso-price">
+          <span class="price-label">Inversión:</span>
+          <span class="price-value">Q1,650</span>
+        </div>
+      </div>
+      
+      <a id="boton-wsp" class="btn whatsapp-btn magnetic-btn" href="https://wa.me/50245931731?text=Hola,%20vi%20el%20curso%20Básico%20en%20la%20página%20web,%20¡necesito%20más%20información!" target="_blank">
+        <i class="ri-whatsapp-line"></i>
+        <span>Más información</span>
+        <div class="btn-ripple"></div>
+      </a>
+    </div>
+
+    <div class="video-centro">
+      <div class="video-wrapper">
+        <video autoplay muted loop playsinline>
+          <source src="videos/videocurso1.mp4" type="video/mp4">
+          Tu navegador no soporta el video.
+        </video>
+        <div class="video-overlay">
+          <button class="play-btn">
+            <i class="ri-play-fill"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <p style="text-align: center; margin-top: 20px; color: var(--text-gray);">Ejemplo de nuestro trabajo</p>
+  </section>
+
+  <!-- Social Media Section Mejorada -->
+  <section id="redes" class="section redes-section">
+    <h2 class="section-title">SÍGUENOS</h2>
+    
+    <div class="social-intro">
+      <h3>Conecta con Nosotros</h3>
+      <p>Únete a nuestra comunidad y mantente al día con las últimas tendencias</p>
+    </div>
+    
+   <div class="redes-grid">
+
+  <!-- tus redes -->
+  <a href="https://www.instagram.com/tubarbero_gt/" target="_blank" class="social-card instagram">
+    <div class="social-icon">
+      <i class="ri-instagram-line"></i>
+    </div>
+    <div class="social-info">
+      <h4>Instagram</h4>
+      <span>@tubarbero_gt</span>
+    </div>
+    <div class="social-bg"></div>
+  </a>
+
+  <a href="https://www.facebook.com/TuBarbero.Gt" target="_blank" class="social-card facebook">
+    <div class="social-icon">
+      <i class="ri-facebook-box-line"></i>
+    </div>
+    <div class="social-info">
+      <h4>Facebook</h4>
+      <span>@tubarbero Gt</span>
+    </div>
+    <div class="social-bg"></div>
+  </a>
+
+  <a href="https://wa.me/50245931731?text=Hola,%20vi%20tu%20página%20web%20y%20necesito%20más%20información!" target="_blank" class="social-card whatsapp">
+    <div class="social-icon">
+      <i class="ri-whatsapp-line"></i>
+    </div>
+    <div class="social-info">
+      <h4>WhatsApp</h4>
+      <span>+502 4593-1731</span>
+    </div>
+    <div class="social-bg"></div>
+  </a>
+
+  <a href="https://www.tiktok.com/@tubarbero_gt?lang=es-419" target="_blank" class="social-card tiktok">
+    <div class="social-icon">
+      <i class="ri-tiktok-line"></i>
+    </div>
+    <div class="social-info">
+      <h4>TikTok</h4>
+      <span>@tubarbero_gt</span>
+    </div>
+    <div class="social-bg"></div>
+  </a>
+
+  <!-- YouTube DENTRO del grid -->
+  <a href="https://www.youtube.com/@TuBarberoGT" target="_blank" class="social-card youtube">
+    <div class="social-icon">
+      <i class="ri-youtube-line"></i>
+    </div>
+    <div class="social-info">
+      <h4>YouTube</h4>
+      <span>@TuBarberoGT</span>
+    </div>
+    <div class="social-bg"></div>
+  </a>
+
+</div>
+  </section>
+
+  <!-- Products Section Mejorada -->
+  <section id="productos" class="section products-section">
+    <h2 class="section-title">PRODUCTOS</h2>
+    <p class="section-subtitle">Las mejores marcas para tu estilo</p>
+    
+    <div class="filtros">
+      <button class="filter-btn active glow-btn" data-filter="all">
+        <span>Destacados</span>
+        <div class="btn-glow"></div>
+      </button>
+      <button class="filter-btn glow-btn" data-filter="catrin">
+        <span>Catrin</span>
+        <div class="btn-glow"></div>
+      </button>
+      <button class="filter-btn glow-btn" data-filter="agiva">
+        <span>Agiva</span>
+        <div class="btn-glow"></div>
+      </button>
+      <button class="filter-btn glow-btn" data-filter="redone">
+        <span>Red One</span>
+        <div class="btn-glow"></div>
+      </button>
+    </div>
+
+    <div class="productos-grid" id="productos-grid">
+      <!-- Productos se generarán dinámicamente por JavaScript -->
+    </div>
+  </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <span class="logo-text">MC</span>
+        <span class="logo-accent">BarberShop</span>
+      </div>
+      <p>&copy; 2026 MC BarberShop - Todos los derechos reservados</p>
+      <p>Desarrollado con pasión por la excelencia en barbería</p>
+    </div>
+  </footer>
+</body>
+
+  <script src="script.js?v=1.2"></script>
+</html>
