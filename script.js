@@ -15,7 +15,7 @@ const cursosData = {
     descripcion: "Aprende desde cero: manejo de máquinas, degradado clásico y cortes base.",
     precio: "Q1,650",
     badge: "Más Popular",
-    whatsapp: "https://wa.me/50245931731?text=Hola,%20vi%20el%20curso%20Básico%20en%20la%20página%20web,%20¡necesito%20más%20información!",
+    whatsapp: "https://wa.me/50253250624?text=Hola,%20vi%20el%20curso%20Básico%20en%20la%20página%20web,%20¡necesito%20más%20información!",
     features: [
       "12 semanas de duración",
       "Prácticas reales",
@@ -28,7 +28,7 @@ const cursosData = {
     descripcion: "Mejora tu técnica con fades modernos, figuras y líneas perfectas, mediante tecnificación en clases privadas.",
     precio: "Q1,450",
     badge: "Profesional",
-    whatsapp: "https://wa.me/50245931731?text=Hola,%20vi%20el%20curso%20Avanzado%20en%20la%20página%20web,%20¡necesito%20más%20información!",
+    whatsapp: "https://wa.me/50253250624?text=Hola,%20vi%20el%20curso%20Avanzado%20en%20la%20página%20web,%20¡necesito%20más%20información!",
     features: [
       "10 semanas de duración",
       "4 clases personalizadas",
@@ -41,7 +41,7 @@ const cursosData = {
     descripcion: "Todo lo necesario para emprender como barbero profesional.",
     precio: "Q1,550", 
     badge: "Completo",
-    whatsapp: "https://wa.me/50245931731?text=Hola,%20vi%20el%20curso%20Profesional%20en%20la%20página%20web,%20¡necesito%20más%20información!",
+    whatsapp: "https://wa.me/50253250624?text=Hola,%20vi%20el%20curso%20Profesional%20en%20la%20página%20web,%20¡necesito%20más%20información!",
     features: [
       "12 semanas de duración",
       "5 clases personalizadas",
@@ -55,7 +55,7 @@ const cursosData = {
     descripcion: "Con clases personalizadas en fade, domina el arte del color: fantasy, platinado, pigmentación y uso profesional de productos.",
     precio: "Q2,550",
     badge: "Creativo", 
-    whatsapp: "https://wa.me/50245931731?text=Hola,%20vi%20el%20curso%20de%20Colorimetría%20en%20la%20página%20web,%20¡necesito%20más%20información!",
+    whatsapp: "https://wa.me/50253250624?text=Hola,%20vi%20el%20curso%20de%20Colorimetría%20en%20la%20página%20web,%20¡necesito%20más%20información!",
     features: [
       "6 semanas de duración",
       "Kit de herramientas incluido",
@@ -80,8 +80,8 @@ const productosData = {
     { nombre: "Red One Black", precio: "Q140", imagen: "productos/redone2.jpeg", destacado: false },
     { nombre: "Red One Green", precio: "Q140", imagen: "productos/redone3.jpeg", destacado: true },
     { nombre: "Red One Red", precio: "Q140", imagen: "productos/redone4.jpeg", destacado: true },
-    { nombre: "Red One Bright White", precio: "Q140", imagen: "productos/redone5.jpeg", destacado: false },
-    { nombre: "Red One Creative Fiber Wax", precio: "Q140", imagen: "productos/redone6.jpeg", destacado: false }
+    { nombre: "Red One Bright White", precio: "Q140", imagen: "productos/redone6.jpeg", destacado: false },
+    { nombre: "Red One Creative Fiber Wax", precio: "Q140", imagen: "productos/redone5.jpeg", destacado: false }
   ]
 };
 
@@ -93,20 +93,57 @@ window.appState = {
 
 function saveAppState() {
   try {
-    localStorage.setItem('mc_app_state_v10', JSON.stringify(window.appState));
+    localStorage.setItem('mc_app_state_v10.1', JSON.stringify(window.appState));
   } catch (e) {
     console.warn('No se pudo guardar appState:', e);
   }
 }
 
+// ==================== SISTEMA DE AVISO DE COOKIES ====================
+function initCookieBanner() {
+  const banner = document.getElementById('cookie-banner');
+  const acceptBtn = document.getElementById('accept-cookies');
+  
+  if (!banner || !acceptBtn) return;
+
+  // Comprobar si el usuario ya aceptó las cookies previamente
+  const cookiesAccepted = localStorage.getItem('mc_cookies_accepted');
+
+  if (!cookiesAccepted) {
+    // Si no ha aceptado, mostramos el banner después de 1 segundo de entrar a la web
+    setTimeout(() => {
+      banner.classList.add('show');
+    }, 1000);
+  }
+
+  // Acción al hacer clic en "Entendido"
+  acceptBtn.addEventListener('click', () => {
+    // Guardar la confirmación en el navegador (no vuelve a salir en esta PC/celular)
+    localStorage.setItem('mc_cookies_accepted', 'true');
+    
+    // Ocultar el banner con animación
+    banner.classList.remove('show');
+    
+    console.log('✅ Política de privacidad aceptada por el usuario');
+  });
+}
+
 function loadAppState() {
-  const raw = localStorage.getItem('mc_app_state_v10');
+  const raw = localStorage.getItem('mc_app_state_v10.1') || localStorage.getItem('mc_app_state_v10');
   if (raw) {
     try {
       window.appState = JSON.parse(raw);
       const validProducts = Array.isArray(window.appState.products);
       const hasParaBarba = validProducts && window.appState.products.some(p => p.marca === 'parabarba');
       if (validProducts && hasParaBarba) {
+        window.appState.products.forEach(product => {
+          const brandProducts = productosData[product.marca];
+          const defaultProduct = brandProducts && brandProducts.find(item => item.nombre === product.nombre);
+          if (defaultProduct && product.imagen !== defaultProduct.imagen) {
+            product.imagen = defaultProduct.imagen;
+          }
+        });
+        saveAppState();
         return;
       }
       console.warn('appState detectado pero incompleto o desactualizado, se reconstruirá desde defaults');
@@ -215,7 +252,7 @@ function initHeroButtons() {
   // Botón de contacto por WhatsApp
   if (contactBtn) {
     contactBtn.onclick = () => {
-      window.open('https://wa.me/50245931731?text=Hola,%20vi%20tu%20página%20web%20y%20necesito%20más%20información%20sobre%20tus%20servicios!', '_blank');
+      window.open('https://wa.me/50253250624?text=Hola,%20vi%20tu%20página%20web%20y%20necesito%20más%20información%20sobre%20tus%20servicios!', '_blank');
       console.log('✅ Botón contacto clickeado');
     };
   }
@@ -419,7 +456,7 @@ function initProducts() {
         </div>
         <h3>${producto.nombre}</h3>
         <span class="price">${producto.precio}</span>
-        <a href="https://wa.me/50245931731?text=Hola,%20vi%20el%20producto%20${encodeURIComponent(producto.nombre)}%20en%20la%20página%20web,%20¡necesito%20más%20información!" 
+        <a href="https://wa.me/50253250624?text=Hola,%20vi%20el%20producto%20${encodeURIComponent(producto.nombre)}%20en%20la%20página%20web,%20¡necesito%20más%20información!" 
            target="_blank" class="buy-btn">
           <i class="ri-whatsapp-line"></i>
           <span>Comprar</span>
@@ -468,9 +505,9 @@ function initStats() {
   function animateNumber(element, target) {
     const format = element.dataset.format || '';
 
-    if (target === 25000) {
+    if (target === 31800) {
       // Animación lenta para seguidores
-      let current = 20001; 
+      let current = 30000; 
       const frames = 3000000; 
       const increment = (target - 0) / frames;
 
@@ -620,6 +657,7 @@ function initApp() {
   initProducts();
   initStats();
   initVideo();
+  initCookieBanner(); // Inicializar consentimiento de cookies si es necesario
   
   console.log('✅ ¡Aplicación inicializada correctamente!');
 }
